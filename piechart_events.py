@@ -5,9 +5,9 @@ results_by_events = {'phantom': 0, 'Powheg-Openloops': 13751647, 'herwig': 0, 'a
 
 results_by_sample = {'phantom': 0, 'Powheg-Openloops': 9, 'herwig': 0, 'amcatnlo': 63, 'sherpa': 0, 'evtgen': 17, 'pythiaOnly': 123, 'unknown': 17, 'powheg': 71, 'pythia': 925, 'madgraph': 645, 'amcatnloFXFX': 36, 'herwigOnly': 0, 'mcfm': 6, 'madgraphMLM': 47, 'powhegMiNNLO': 7}
 
-df = results_by_events.items() 
-print (results_by_events.values())
-print (results_by_events.keys())
+df = results_by_sample.items() 
+print (results_by_sample.values())
+print (results_by_sample.keys())
 
 values = []
 keys = []
@@ -18,9 +18,9 @@ valueLOMLM = 0
 valuePOWHEG = 0
 valuePOWHEGNNLO = 0
 valueOpenloops = 0
-for key, value in results_by_events.items():
-  if key=='sherpa':
-    value = 200000000
+for key, value in results_by_sample.items():
+  #if key=='sherpa':
+    #value = 200000000
   if key=='pythia': 
     value = 0
   if key=='herwig':
@@ -70,5 +70,5 @@ print ('total = ', total)
 print (values)
 fig = go.Figure(data=[go.Pie(labels=keys, values=values)])
 fig.show()
-fig.write_image("piechart_UL.pdf")
-fig.write_image("piechart_UL.png")
+fig.write_image("piechart_UL_events.pdf")
+fig.write_image("piechart_UL_events.png")
