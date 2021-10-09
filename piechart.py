@@ -1,9 +1,13 @@
 import plotly.express as px
 import plotly.graph_objects as go
 
-results_by_events = {'phantom': 0, 'Powheg-Openloops': 13751647, 'herwig': 0, 'amcatnlo': 1650274627, 'sherpa': 0, 'evtgen': 78948995, 'pythiaOnly': 1047133631, 'unknown': 153132400, 'powheg': 2973963822, 'pythia': 6749059677, 'madgraph': 995739419, 'amcatnloFXFX': 1587714627, 'herwigOnly': 0, 'mcfm': 2999183, 'madgraphMLM': 848950666, 'powhegMiNNLO': 982744850}
+results_by_events = {'phantom': 0, 'Powheg-Openloops': 52059210, 'herwig': 0, 'amcatnlo': 4945503176, 'sherpa': 0, 'evtgen': 437539490, 'pythiaOnly': 3870975276, 'unknown': 629678000, 'powheg': 11686162250, 'pythia': 24345882594, 'madgraph': 3380970251, 'amcatnloFXFX': 4588947176, 'herwigOnly': 0, 'mcfm': 24732151, 'madgraphMLM': 2547392822, 'powhegMiNNLO': 4026908351}
 
-results_by_sample = {'phantom': 0, 'Powheg-Openloops': 9, 'herwig': 0, 'amcatnlo': 63, 'sherpa': 0, 'evtgen': 17, 'pythiaOnly': 123, 'unknown': 17, 'powheg': 71, 'pythia': 925, 'madgraph': 645, 'amcatnloFXFX': 36, 'herwigOnly': 0, 'mcfm': 6, 'madgraphMLM': 47, 'powhegMiNNLO': 7}
+results_by_sample = {'phantom': 0, 'Powheg-Openloops': 36, 'herwig': 0, 'amcatnlo': 304, 'sherpa': 0, 'evtgen': 143, 'pythiaOnly': 554, 'unknown': 64, 'powheg': 317, 'pythia': 4851, 'madgraph': 3496, 'amcatnloFXFX': 120, 'herwigOnly': 0, 'mcfm': 37, 'madgraphMLM': 182, 'powhegMiNNLO': 27}
+
+#results_by_events = {'phantom': 0, 'Powheg-Openloops': 13751647, 'herwig': 0, 'amcatnlo': 1650274627, 'sherpa': 0, 'evtgen': 78948995, 'pythiaOnly': 1047133631, 'unknown': 153132400, 'powheg': 2973963822, 'pythia': 6749059677, 'madgraph': 995739419, 'amcatnloFXFX': 1587714627, 'herwigOnly': 0, 'mcfm': 2999183, 'madgraphMLM': 848950666, 'powhegMiNNLO': 982744850}
+
+#results_by_sample = {'phantom': 0, 'Powheg-Openloops': 9, 'herwig': 0, 'amcatnlo': 63, 'sherpa': 0, 'evtgen': 17, 'pythiaOnly': 123, 'unknown': 17, 'powheg': 71, 'pythia': 925, 'madgraph': 645, 'amcatnloFXFX': 36, 'herwigOnly': 0, 'mcfm': 6, 'madgraphMLM': 47, 'powhegMiNNLO': 7}
 
 df = results_by_events.items() 
 print (results_by_events.values())
@@ -20,11 +24,11 @@ valuePOWHEGNNLO = 0
 valueOpenloops = 0
 for key, value in results_by_events.items():
   if key=='sherpa':
-    value = 200000000
+    value = 2000000000
   if key=='pythia': 
     value = 0
   if key=='herwig':
-    value = 0
+    value = 200000000
   if key=='amcatnlo':
     valueAMC = value
     print (valueAMC)
@@ -42,6 +46,10 @@ for key, value in results_by_events.items():
   if key=='Powheg-Openloops':
     valueOpenloops = value
     value = 0
+  if key=='evtgen':
+    key='evtgen+pythia'
+  if key=='unknown':
+    key='other generators'
   if value>0:
     values.append(value)
     keys.append(key)
@@ -70,5 +78,5 @@ print ('total = ', total)
 print (values)
 fig = go.Figure(data=[go.Pie(labels=keys, values=values)])
 fig.show()
-fig.write_image("piechart_UL.pdf")
-fig.write_image("piechart_UL.png")
+fig.write_image("piechart_UL_events.pdf")
+fig.write_image("piechart_UL_events.png")
